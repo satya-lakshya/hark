@@ -6,9 +6,11 @@
  * button that does nothing is worse than an honest one that waits.
  */
 
-// A file sitting next to this page. Swap it for the GitHub Releases
-// URL once the .dmg is hosted there, which is the only change needed.
-const DOWNLOAD_URL = "Hark-0.1.0.dmg";
+// The release asset. It is not kept in the repository: GitHub Pages
+// caps a repo at 1GB and three versions of a 371MB image would pass
+// that, while release downloads are not metered at all.
+const DOWNLOAD_URL =
+  "https://github.com/satya-lakshya/hark/releases/download/v0.1.0/Hark-0.1.0.dmg";
 const CONTACT_EMAIL = "hello@example.com";
 
 for (const link of document.querySelectorAll(".download")) {
