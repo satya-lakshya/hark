@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hark</title>
+<meta name="description" content="Hark reads the newest ChatGPT or Claude answer aloud on your Mac. It starts speaking in about a third of a second, however long the answer is.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="icon-512.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css?v=a17d4d76">
+</head>
+<body>
+
+<!-- ============ the stage ============
+     The mark is pinned for this whole run and only the left column moves.
+     Each bay keeps its own colouring as it passes, so the page changes
+     character without the one fixed thing on it ever moving.
+     Below the breakpoint there is no second column to pin against, so it
+     all becomes one ordinary stack.
+-->
+<div class="stage">
+  <div class="stage__flow">
+
+    <section class="bay bay--hero">
+      <div class="bay__inner">
+        <p class="wordmark">HARK</p>
+
+        <h1 class="hook">You asked a question.<br>It wrote an essay.</h1>
+
+        <p class="pitch">
+          Press <kbd>Ctrl</kbd> twice and Hark is already reading it to you.
+          A third of a second to the first word, whether the answer is four
+          lines or four thousand.
+        </p>
+
+        <a class="download" href="#get" id="downloadLink">Download for Mac</a>
+        <p class="download__meta">
+          Free while in beta. Version 0.1.0, Apple silicon, 371&nbsp;MB.
+        </p>
+      </div>
+    </section>
+
+    <section class="bay bay--dark">
+      <div class="bay__inner">
+        <h2 class="bay__title">It will find what you want read</h2>
+        <p class="bay__lede">Three ways, tried in that order, so you almost never have to think about it.</p>
+
+        <ol class="ways">
+          <li>
+            <b>Just press Ctrl twice.</b>
+            <p>In ChatGPT or Claude, Hark finds the newest answer by itself. Nothing to highlight, nothing to aim at.</p>
+          </li>
+          <li>
+            <b>Not what you wanted? Select it and press Ctrl twice.</b>
+            <p>Any text, in any app, on any page. An email, a PDF, a paragraph halfway down a long answer.</p>
+          </li>
+          <li>
+            <b>Nothing selected? It reads whatever you copied last.</b>
+            <p>So the thing you already have in hand is never more than two taps away.</p>
+          </li>
+        </ol>
+
+        <p class="ways__foot">Whichever one it lands on, it starts speaking in <strong>~0.3 seconds</strong>.</p>
+      </div>
+    </section>
+
+    <section class="bay">
+      <div class="bay__inner">
+        <h2 class="bay__title">Why it is worth the permission prompt</h2>
+        <dl class="claims">
+          <div class="claim">
+            <dt>Long answers stop being a wall</dt>
+            <dd>Every other reader builds the whole audio file before playing a second of it, so the longer the answer, the longer you sit there. Hark speaks the first sentence while it is still making the second. A 4,000 word answer starts as fast as a one line one.</dd>
+          </div>
+          <div class="claim">
+            <dt>It sounds like someone reading, not a machine spelling</dt>
+            <dd>Headings get a pause. Tables are read row by row with the column names attached, so a number arrives next to what it means. Formulae come out as spoken maths. It says "you eye" for UI and "jason" for JSON, because it checks before it guesses.</dd>
+          </div>
+          <div class="claim">
+            <dt>Thirty lines of code become one sentence</dt>
+            <dd>Nobody wants a function read out bracket by bracket. Hark tells you what the code does and moves on, so you can keep listening instead of reaching for the stop button.</dd>
+          </div>
+          <div class="claim">
+            <dt>The voice lives on your Mac</dt>
+            <dd>54 of them, and you can blend two into one you like better. Nothing you listen to is uploaded, it works on a plane, and there is no per-word bill for us to pass on to you later.</dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- Pinned for the whole stage. The rings leave the dot when you point
+       at it, which is the shape of the thing the app does. -->
+  <aside class="stage__pin" aria-hidden="true">
+    <div class="mark">
+      <svg viewBox="0 0 240 240" fill="none" stroke="#fff" stroke-width="11" stroke-linecap="round">
+        <circle class="mark__dot" cx="74" cy="120" r="16.3" fill="#fff" stroke="none"/>
+        <path class="mark__ring" style="--i:0" d="M 98.7 90.6 A 38.4 38.4 0 0 1 98.7 149.4"/>
+        <path class="mark__ring" style="--i:1" d="M 110.2 66.3 A 64.8 64.8 0 0 1 110.2 173.7"/>
+        <path class="mark__ring" style="--i:2" d="M 116.8 39.5 A 91.2 91.2 0 0 1 116.8 200.5"/>
+        <path class="mark__ring mark__ring--ghost" style="--i:3" d="M 121.8 12.6 A 117.6 117.6 0 0 1 121.8 227.4"/>
+        <path class="mark__ring mark__ring--ghost" style="--i:4" d="M 123.3 -15.3 A 144.0 144.0 0 0 1 123.3 255.3"/>
+      </svg>
+    </div>
+  </aside>
+</div>
+
+<main>
+<!-- ============ get it ============ -->
+<section class="get" id="get">
+  <div class="wrap">
+    <h2 class="heading">Installing it</h2>
+    <p class="get__note">
+      Hark is not signed with an Apple developer certificate yet, so macOS
+      will stop you the first time and you have to tell it to go ahead. Here
+      is exactly what you will see.
+    </p>
+
+    <ol class="steps">
+      <li>
+        <b>Open the disk image and drag Hark into Applications.</b>
+        <p>The window shows the app and the folder side by side.</p>
+      </li>
+      <li>
+        <b>Open Hark. macOS will refuse, and say Apple cannot check it for malware.</b>
+        <p>Click Done. This is expected, and it is what happens to every app not signed with a paid Apple certificate.</p>
+      </li>
+      <li>
+        <b>Go to System Settings, Privacy &amp; Security, and scroll to Security.</b>
+        <p>There is a line about Hark being blocked, with an Open Anyway button next to it. Click it and confirm with your password or Touch ID.</p>
+      </li>
+      <li>
+        <b>Turn Hark on under Accessibility, in the same Privacy &amp; Security settings.</b>
+        <p>This is how it reads the newest answer and presses that app's copy button for you. It is the one permission Hark genuinely cannot work without.</p>
+      </li>
+      <li>
+        <b>If tapping Ctrl twice does nothing, turn Hark on under Input Monitoring too.</b>
+        <p>Some versions of macOS want this separately before an app can watch for a hotkey while you are in another window.</p>
+      </li>
+    </ol>
+
+    <a class="download" href="#" id="downloadLink2">Download for Mac</a>
+    <p class="download__meta">Version 0.1.0, Apple silicon, 371&nbsp;MB.</p>
+  </div>
+</section>
+
+<!-- ============ faq ============ -->
+<section class="faq">
+  <div class="wrap">
+    <h2 class="heading">Questions</h2>
+
+    <details>
+      <summary>Why does my Mac say it cannot check Hark for malware?</summary>
+      <p>
+        Because we have not paid Apple the 99 dollars a year for a developer
+        certificate yet. That fee buys a signature, not a safety check, and
+        the warning says only that the signature is missing. We would rather
+        put the money into the product during beta and be honest about the
+        warning than hide it.
+      </p>
+    </details>
+
+    <details>
+      <summary>Will I have to grant Accessibility again after an update?</summary>
+      <p>
+        Yes, for now, and we are sorry about it. macOS ties that permission
+        to an app's signature, and an unsigned build gets a new one each
+        time. This stops the day we buy the certificate above.
+      </p>
+    </details>
+
+    <details>
+      <summary>What does Hark send anywhere?</summary>
+      <p>
+        The speech happens on your Mac, so nothing you listen to leaves it.
+        One thing does go out: when an answer contains a code block, that
+        block is sent to our server to get back a one sentence description of
+        what it does. You can turn that off in the dashboard, and everything
+        else keeps working. We also count how often reads happen, with no
+        text attached, to know whether people come back.
+      </p>
+    </details>
+
+    <details>
+      <summary>What stops working if your server goes down?</summary>
+      <p>
+        Code descriptions, and nothing else. Finding the answer, reading
+        structure, the voices, and the speed all run on your machine. A code
+        block gets announced rather than described, the read does not pause
+        waiting for it, and everything else sounds the same.
+      </p>
+    </details>
+
+    <details>
+      <summary>Does it work on an Intel Mac, or on Windows?</summary>
+      <p>
+        Not yet. This build is Apple silicon only. Windows is a real plan and
+        most of the work carries over, though the part that finds the newest
+        answer has to be rewritten against a different system interface, so
+        it is weeks away rather than days.
+      </p>
+    </details>
+
+    <details>
+      <summary>Why is the download so large?</summary>
+      <p>
+        The voice model is 310 MB of it. It is the price of the voice running
+        on your machine instead of in someone's cloud, and of it working on a
+        plane. We are looking at a smaller version of the model.
+      </p>
+    </details>
+
+    <details>
+      <summary>Is it going to stay free?</summary>
+      <p>
+        The beta is free and has no account. A paid version is coming, and
+        when it does we will say clearly what changes before anything does.
+      </p>
+    </details>
+  </div>
+</section>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot__inner">
+    <span>Hark, in beta.</span>
+    <a href="privacy.html">Privacy</a>
+    <a href="terms.html">Terms</a>
+    <a href="mailto:hello@example.com" id="contactLink">Contact</a>
+  </div>
+</footer>
+
+<script src="site.js?v=eea6076b"></script>
+</body>
+</html>

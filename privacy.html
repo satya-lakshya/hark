@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy | Hark</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="icon-512.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css?v=a17d4d76">
+</head>
+<body class="doc">
+<div class="wrap">
+  <p class="doc__back"><a href="index.html">Back to Hark</a></p>
+  <h1>Privacy</h1>
+  <p>Last updated: 19 September 2026</p>
+  <p>Hark is in early beta. If this document and the app ever disagree, the app is wrong and we want to know.</p>
+  <h2>The short version</h2>
+  <p>The app reads text aloud on your Mac. To describe code, it sends code blocks to Google. Nothing else you read leaves your machine, and none of it is stored anywhere by us.</p>
+  <h2>What the app can see</h2>
+  <p>To find the newest reply in a chat app, the app uses macOS Accessibility. That means it can read the contents of the window in front of you and press that app&#x27;s own copy button. macOS asks your permission before any of this works, and you can withdraw it in System Settings at any time.</p>
+  <p>The app only looks when you press the hotkey. It does not watch your screen in the background.</p>
+  <p>It also briefly uses your clipboard: it copies the reply, reads it, and puts back whatever you had there before.</p>
+  <h2>What leaves your Mac</h2>
+  <p><strong>Code blocks.</strong> When a reply contains code, that code is sent to Google&#x27;s Vertex AI so a model can describe it in a sentence. Google processes it under their own terms. Nothing about the surrounding conversation is sent, only the code, and at most the first 800 characters of each block.</p>
+  <p>You can turn this off under Playback. With it off, nothing you read ever leaves your machine, and code blocks are announced as &quot;here&#x27;s a code example&quot; instead.</p>
+  <p><strong>Nothing else.</strong> The speech itself is generated on your Mac by a local model. The text of what you read is never uploaded, never logged, and never stored by us.</p>
+  <h2>What we count</h2>
+  <p>The app keeps a usage log on your Mac at <code>~/.config/hark/usage.jsonl</code>. It records how often reads happen, how long they last, how much of each one you listened to, which app you were in, and how many blocks of each kind the text had.</p>
+  <p>It does not record the text. Not a sentence, not a title, not a snippet. There is nothing in that file that could reconstruct what you read.</p>
+  <p>During beta this file stays on your Mac. If we ever send it anywhere, we will say so in the app before it happens, and it will still contain no text.</p>
+  <h2>Feedback you send</h2>
+  <p>If you rate a read or write us a note, we keep what you wrote along with the rating. Write as much or as little as you like, and treat it as something we will read.</p>
+  <h2>Deleting it</h2>
+  <p>Everything the app stores is in <code>~/.config/hark/</code>. Delete that folder and nothing of yours remains. Removing the app itself removes nothing else, because there is nothing else.</p>
+  <h2>Getting in touch</h2>
+  <p>Use Send feedback in the menu bar, or the Feedback tab in the dashboard.</p>
+</div>
+<footer class="foot">
+  <div class="wrap foot__inner">
+    <span>Hark, in beta.</span>
+    <a href="privacy.html">Privacy</a>
+    <a href="terms.html">Terms</a>
+  </div>
+</footer>
+</body>
+</html>
