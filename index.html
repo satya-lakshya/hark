@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="site.css?v=465c9b29">
+<link rel="stylesheet" href="site.css?v=ff2d8f59">
 </head>
 <body>
 
@@ -91,6 +91,42 @@
       </div>
     </section>
 
+    <section class="bay bay--install" id="get">
+      <div class="bay__inner bay__inner--wide">
+      <h2 class="heading">Installing it</h2>
+      <p class="get__note">
+        Hark is not signed with an Apple developer certificate yet, so macOS
+        will stop you the first time and you have to tell it to go ahead. Here
+        is exactly what you will see.
+      </p>
+
+      <ol class="steps">
+        <li>
+          <b>Open the disk image and drag Hark into Applications.</b>
+          <p>The window shows the app and the folder side by side.</p>
+        </li>
+        <li>
+          <b>Open Hark. macOS will refuse, and say Apple cannot check it for malware.</b>
+          <p>Click Done. This is expected, and it is what happens to every app not signed with a paid Apple certificate.</p>
+        </li>
+        <li>
+          <b>Go to System Settings, Privacy &amp; Security, and scroll to Security.</b>
+          <p>There is a line about Hark being blocked, with an Open Anyway button next to it. Click it and confirm with your password or Touch ID.</p>
+        </li>
+        <li>
+          <b>Turn Hark on under Accessibility, in the same Privacy &amp; Security settings.</b>
+          <p>This is how it reads the newest answer and presses that app's copy button for you. It is the one permission Hark genuinely cannot work without.</p>
+        </li>
+        <li>
+          <b>If tapping Ctrl twice does nothing, turn Hark on under Input Monitoring too.</b>
+          <p>Some versions of macOS want this separately before an app can watch for a hotkey while you are in another window.</p>
+        </li>
+      </ol>
+
+      <a class="download" href="#" id="downloadLink2">Download for Mac</a>
+      <p class="download__meta">Version 0.1.0, Apple silicon, 371&nbsp;MB.</p>
+      </div>
+    </section>
   </div>
 
   <!-- Pinned for the whole stage. The rings leave the dot when you point
@@ -109,44 +145,7 @@
   </aside>
 </div>
 
-<main>
-<!-- ============ get it ============ -->
-<section class="get" id="get">
-  <div class="wrap">
-    <h2 class="heading">Installing it</h2>
-    <p class="get__note">
-      Hark is not signed with an Apple developer certificate yet, so macOS
-      will stop you the first time and you have to tell it to go ahead. Here
-      is exactly what you will see.
-    </p>
-
-    <ol class="steps">
-      <li>
-        <b>Open the disk image and drag Hark into Applications.</b>
-        <p>The window shows the app and the folder side by side.</p>
-      </li>
-      <li>
-        <b>Open Hark. macOS will refuse, and say Apple cannot check it for malware.</b>
-        <p>Click Done. This is expected, and it is what happens to every app not signed with a paid Apple certificate.</p>
-      </li>
-      <li>
-        <b>Go to System Settings, Privacy &amp; Security, and scroll to Security.</b>
-        <p>There is a line about Hark being blocked, with an Open Anyway button next to it. Click it and confirm with your password or Touch ID.</p>
-      </li>
-      <li>
-        <b>Turn Hark on under Accessibility, in the same Privacy &amp; Security settings.</b>
-        <p>This is how it reads the newest answer and presses that app's copy button for you. It is the one permission Hark genuinely cannot work without.</p>
-      </li>
-      <li>
-        <b>If tapping Ctrl twice does nothing, turn Hark on under Input Monitoring too.</b>
-        <p>Some versions of macOS want this separately before an app can watch for a hotkey while you are in another window.</p>
-      </li>
-    </ol>
-
-    <a class="download" href="#" id="downloadLink2">Download for Mac</a>
-    <p class="download__meta">Version 0.1.0, Apple silicon, 371&nbsp;MB.</p>
-  </div>
-</section>
+<main class="after">
 
 <!-- ============ faq ============ -->
 <section class="faq">

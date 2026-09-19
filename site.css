@@ -83,6 +83,22 @@ a { color: inherit; }
   position: relative;
 }
 
+/* One screen of room after the last bay. The bay and the mark both stay
+   pinned across it while the card below rides up over them, so the mark
+   is covered rather than drifting away into nothing. */
+.stage__flow { padding-bottom: 100svh; }
+
+/* Stuck by its bottom, not its top. This bay is taller than the screen,
+   and a top stuck element that tall pins its first screen and hides the
+   rest: the last two steps and the download button would never come
+   into view. Sticking the bottom lets it scroll through normally and
+   then hold still once its end is reached, which is the moment the card
+   needs something to rise over. */
+.bay--install {
+  position: sticky;
+  bottom: 0;
+}
+
 .stage__pin {
   position: sticky;
   top: 0;
@@ -110,6 +126,14 @@ a { color: inherit; }
 }
 
 .bay__inner { max-width: 31rem; width: 100%; }
+
+/* Five numbered steps need more room than a paragraph does. */
+.bay__inner--wide { max-width: 34rem; }
+
+/* The steps run past one screen at most widths, and that is allowed. It
+   is the one bay somebody reads slowly with a hand on the trackpad, so
+   it takes the height it needs rather than being squeezed. */
+.bay--install { min-height: 100svh; }
 
 /* The dark bay meets the pinned panel with no seam, and the page becomes
    one black field with the mark floating in it. That is the intent, not
@@ -320,17 +344,7 @@ a { color: inherit; }
 
 /* ============ installing ============ */
 
-/* The chapter after the stage. The mark has gone by now, so without a
-   boundary this reads as the page having run out rather than changed
-   subject. It snaps too, so the travel between the last bay and here is
-   one movement instead of a screen of drifting. */
-.get {
-  padding: clamp(4rem, 8vw, 6rem) 0 clamp(3rem, 7vw, 4.5rem);
-  border-top: 1px solid var(--line);
-  scroll-snap-align: start;
-  background: var(--paper);
-}
-
+/* The install steps, now inside a bay rather than a full width band. */
 .get__note { color: var(--ash); margin-bottom: 1.6rem; }
 
 .steps { list-style: none; counter-reset: step; margin-bottom: 2.2rem; }
@@ -360,9 +374,25 @@ a { color: inherit; }
 
 .get .download { margin-top: 0; }
 
+/* ============ the card ============ */
+
+/* Pulled up over the screen of room left at the end of the stage, and
+   drawn in front of it. Scrolling therefore slides this up over a mark
+   that does not move, which is a deliberate handover rather than the
+   page simply running out of things to keep still. */
+.after {
+  position: relative;
+  z-index: 2;
+  margin-top: -100svh;
+  background: var(--paper);
+  border-radius: 20px 20px 0 0;
+  box-shadow: 0 -20px 50px rgba(0, 0, 0, 0.22);
+  scroll-snap-align: start;
+}
+
 /* ============ faq ============ */
 
-.faq { padding: 0 0 clamp(3.5rem, 8vw, 5rem); }
+.faq { padding: clamp(3.5rem, 8vw, 5rem) 0; }
 
 .faq details { border-top: 1px solid var(--line); }
 .faq details:last-of-type { border-bottom: 1px solid var(--line); }
@@ -400,7 +430,13 @@ a { color: inherit; }
 
 /* ============ foot ============ */
 
-.foot { border-top: 1px solid var(--line); padding: 1.7rem 0 2.6rem; }
+.foot {
+  position: relative;
+  z-index: 2;
+  background: var(--paper);
+  border-top: 1px solid var(--line);
+  padding: 1.7rem 0 2.6rem;
+}
 
 .foot__inner {
   display: flex;
@@ -420,7 +456,18 @@ a { color: inherit; }
      of uneven height, and snapping between them would drag the page
      around under the thumb. */
   html { scroll-snap-type: none; }
-  .bay, .get { scroll-snap-align: none; }
+  .bay, .after { scroll-snap-align: none; }
+
+  /* Nothing is pinned here, so there is no room to reserve and nothing
+     for the card to cover. */
+  .stage__flow { padding-bottom: 0; }
+  .bay--install { position: static; }
+  .after {
+    margin-top: 0;
+    border-radius: 0;
+    box-shadow: none;
+    border-top: 1px solid var(--line);
+  }
 
   /* One column, so there is no second column to pin against. The stage
      becomes an ordinary stack and the mark goes to the top, where it is
