@@ -29,7 +29,19 @@
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
-html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+
+  /* Each bay clicks into place rather than being left wherever the
+     scroll happened to stop. Without it there is a whole screen of
+     travel where the mark is halfway off and nothing has arrived yet,
+     and it is possible to sit in the middle of that.
+     Proximity, not mandatory: mandatory refuses to let anyone rest
+     between two points, which fights the reader on a long section and
+     breaks find-in-page. */
+  scroll-snap-type: y proximity;
+}
 
 body {
   background: var(--paper);
@@ -92,6 +104,9 @@ a { color: inherit; }
   align-items: center;
   padding: 5rem clamp(1.5rem, 4.5vw, 3.75rem);
   background: var(--paper);
+  scroll-snap-align: start;
+  /* Never snap past a bay that is taller than the screen. */
+  scroll-snap-stop: normal;
 }
 
 .bay__inner { max-width: 31rem; width: 100%; }
@@ -285,10 +300,10 @@ a { color: inherit; }
 
 /* ============ claims ============ */
 
-.claims { margin-top: 1.7rem; }
+.claims { margin-top: 1.4rem; }
 
 .claim {
-  padding: 1.15rem 0;
+  padding: 1rem 0;
   border-top: 1px solid var(--line);
 }
 .claim:last-child { border-bottom: 1px solid var(--line); }
@@ -301,11 +316,20 @@ a { color: inherit; }
   margin-bottom: 0.25rem;
 }
 
-.claim dd { color: var(--ash); font-size: 0.94rem; }
+.claim dd { color: var(--ash); font-size: 0.93rem; }
 
 /* ============ installing ============ */
 
-.get { padding: 0 0 clamp(3rem, 7vw, 4.5rem); }
+/* The chapter after the stage. The mark has gone by now, so without a
+   boundary this reads as the page having run out rather than changed
+   subject. It snaps too, so the travel between the last bay and here is
+   one movement instead of a screen of drifting. */
+.get {
+  padding: clamp(4rem, 8vw, 6rem) 0 clamp(3rem, 7vw, 4.5rem);
+  border-top: 1px solid var(--line);
+  scroll-snap-align: start;
+  background: var(--paper);
+}
 
 .get__note { color: var(--ash); margin-bottom: 1.6rem; }
 
@@ -392,6 +416,12 @@ a { color: inherit; }
 /* ============ small screens ============ */
 
 @media (max-width: 820px) {
+  /* Snapping is for full screen bays. Here they are short, stacked and
+     of uneven height, and snapping between them would drag the page
+     around under the thumb. */
+  html { scroll-snap-type: none; }
+  .bay, .get { scroll-snap-align: none; }
+
   /* One column, so there is no second column to pin against. The stage
      becomes an ordinary stack and the mark goes to the top, where it is
      the first thing seen rather than something scrolled past. */
