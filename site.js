@@ -44,3 +44,29 @@ if (mark && canHover && !stillness) {
   // hover rule and the mark would sit frozen mid-crest.
   mark.addEventListener("animationend", () => mark.classList.remove("is-awake"));
 }
+
+/* The payoff reveal, for browsers without scroll timelines.
+ *
+ * animation-timeline: view() is Chrome 115+ and Safari 26+. Firefox does
+ * not ship it, nor does any Safari before 26, and those visitors would
+ * otherwise find the download already sitting there with nothing having
+ * happened. An observer fires once when it comes into view, which every
+ * browser in use can do, and costs nothing while it waits.
+ */
+const hasScrollTimeline =
+  window.CSS && CSS.supports && CSS.supports("animation-timeline", "view()");
+const stillWanted = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+if (!hasScrollTimeline && !stillWanted && "IntersectionObserver" in window) {
+  const payoff = document.querySelector(".grab .wrap");
+  if (payoff) {
+    payoff.classList.add("will-arrive");
+    new IntersectionObserver((entries, observer) => {
+      for (const entry of entries) {
+        if (!entry.isIntersecting) continue;
+        entry.target.classList.add("has-arrived");
+        observer.unobserve(entry.target);
+      }
+    }, { threshold: 0.25 }).observe(payoff);
+  }
+}

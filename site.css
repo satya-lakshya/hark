@@ -83,6 +83,13 @@ a { color: inherit; }
   position: relative;
 }
 
+/* Room at the end for the card to travel across. The mark is what holds
+   still under it, and the mark is the one element that can never be
+   taller than the screen: it is sized as a fraction of its own panel.
+   Pinning a bay would have been the obvious choice and is the unsafe
+   one, since two bays out of four are taller than a laptop screen. */
+.stage__flow { padding-bottom: 62svh; }
+
 .stage__pin {
   position: sticky;
   top: 0;
@@ -373,14 +380,16 @@ a { color: inherit; }
 
 /* ============ the card ============ */
 
-/* Everything after the stage. Nothing is pinned here and nothing rides
-   over anything: an earlier attempt stuck this bay by its bottom edge so
-   a card could cover it, which pinned it from the first pixel instead of
-   the last and left it sitting on top of the hero. */
+/* The card. It is pulled up across the room left at the end of the stage
+   and drawn in front of it, so scrolling slides it over a mark that does
+   not move. Nothing under it is pinned except that mark. */
 .after {
   position: relative;
+  z-index: 2;
+  margin-top: -62svh;
   background: var(--paper);
-  border-top: 1px solid var(--line);
+  border-radius: 22px 22px 0 0;
+  box-shadow: 0 -24px 60px rgba(0, 0, 0, 0.28);
 }
 
 /* ============ the payoff ============ */
@@ -478,6 +487,16 @@ a { color: inherit; }
   /* One column, so there is no second column to pin against. The stage
      becomes an ordinary stack and the mark goes to the top, where it is
      the first thing seen rather than something scrolled past. */
+  /* No second column to pin against, so there is nothing to ride over
+     and no room to reserve. */
+  .stage__flow { padding-bottom: 0; }
+  .after {
+    margin-top: 0;
+    border-radius: 0;
+    box-shadow: none;
+    border-top: 1px solid var(--line);
+  }
+
   .stage { display: flex; flex-direction: column; }
 
   .stage__pin {
@@ -592,4 +611,18 @@ a { color: inherit; }
 @keyframes arrive {
   from { opacity: 0; transform: translateY(2.25rem) scale(0.965); }
   to   { opacity: 1; transform: none; }
+}
+
+/* The same arrival, driven by an observer instead of the scroll, for
+   browsers that have no scroll timelines. Only ever added by script, so
+   a page with no JavaScript shows the button rather than hiding it. */
+.will-arrive {
+  opacity: 0;
+  transform: translateY(2.25rem) scale(0.965);
+}
+
+.will-arrive.has-arrived {
+  opacity: 1;
+  transform: none;
+  transition: opacity 0.55s ease, transform 0.55s cubic-bezier(0.22, 0.68, 0.3, 1);
 }
