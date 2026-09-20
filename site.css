@@ -83,12 +83,22 @@ a { color: inherit; }
   position: relative;
 }
 
-/* Room at the end for the card to travel across. The mark is what holds
-   still under it, and the mark is the one element that can never be
-   taller than the screen: it is sized as a fraction of its own panel.
-   Pinning a bay would have been the obvious choice and is the unsafe
-   one, since two bays out of four are taller than a laptop screen. */
-.stage__flow { padding-bottom: 62svh; }
+/* Room at the end for the card to travel across, and exactly one screen
+   of it.
+   
+   The mark is stuck to the top of the stage, so it comes unstuck when
+   the stage has only its own height left to give: at (content + room -
+   100svh). The card finishes covering the screen at (content). Reserve
+   less than a screen and the first of those happens before the second,
+   which is a stretch where the mark drifts upward while still partly
+   showing above the card's edge. At exactly one screen the two moments
+   are the same instant, so the mark is still until the moment it is
+   hidden, and never both.
+
+   The mark is also the only thing safe to pin here: it is a fraction of
+   its own panel and can never be taller than the screen, where two bays
+   out of four are. */
+.stage__flow { padding-bottom: 100svh; }
 
 .stage__pin {
   position: sticky;
@@ -386,7 +396,7 @@ a { color: inherit; }
 .after {
   position: relative;
   z-index: 2;
-  margin-top: -62svh;
+  margin-top: -100svh;
   background: var(--paper);
   border-radius: 22px 22px 0 0;
   box-shadow: 0 -24px 60px rgba(0, 0, 0, 0.28);
