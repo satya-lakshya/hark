@@ -10,7 +10,7 @@
 // caps a repo at 1GB and three versions of a 371MB image would pass
 // that, while release downloads are not metered at all.
 const DOWNLOAD_URL =
-  "https://github.com/satya-lakshya/hark/releases/download/v0.1.0/Hark-0.1.0.dmg";
+  "https://github.com/satya-lakshya/hark/releases/download/v0.1.0/Hark-0.1.0-v5.dmg";
 const CONTACT_EMAIL = "hello@example.com";
 
 for (const link of document.querySelectorAll(".download")) {
